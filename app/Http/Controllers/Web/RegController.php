@@ -15,7 +15,7 @@ class RegController extends Controller{
     public function regadd(){
         $data=$_POST;
         $pwd=password_verify($data['user_pwd'],PASSWORD_BCRYPT);
-        print_r($pwd);
+        print_r($pwd);exit;
         $info=[
             'user_name'=>$data['user_name'],
             'user_pwd'=>$pwd,
