@@ -1,5 +1,6 @@
 <form method="post" action="/loginadd">
 {{csrf_field()}}
+<input type="hidden" name="url" vlue={{$url}}>
 <div class="form-group">
     <label for="exampleInputEmail1">用户名：</label>
     <input type="text" class="form-control" id="user_name" name="user_name" placeholder="请输入用户名">

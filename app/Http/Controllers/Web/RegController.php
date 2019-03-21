@@ -10,7 +10,11 @@ use App\Model\UserModel;
 class RegController extends Controller{
 
     public function reg(){
-        return view('reg.reg');
+        $url=$_GET['url'];
+        $data=[
+            'url'=>$url
+        ];
+        return view('reg.reg',$data);
     }
     public function regadd(){
         $data=$_POST;
@@ -31,7 +35,7 @@ class RegController extends Controller{
             $key="str:u:token:web:".$model['user_id'];
             Redis::set($key,$token);
             Redis::setTimeout($key,86400);
-            header('refresh:2,https://www.anjingdehua.cn');
+            header('refresh:2,'.$data['url']);
             echo '注册成功';
         }else{
             header('refresh:2,/reg');

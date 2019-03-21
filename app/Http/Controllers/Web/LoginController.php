@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller{
     public function login(){
-        return view('login.login');
+        $url=$_GET['url'];
+        $data=[
+            'url'=>$url
+        ];
+        return view('login.login',$data);
     }
     public function loginadd(){
         $data=$_POST;
@@ -26,7 +30,7 @@ class LoginController extends Controller{
                 $key="str:u:token:web:".$model['user_id'];
                 Redis::set($key,$token);
                 Redis::setTimeout($key,86400);
-                header("Refresh:2;https://www.anjingdehua.cn");
+                header("Refresh:2;".$data['url']);
                 echo '登陆成功';
             }else{
                 header('refresh:2,/login');
