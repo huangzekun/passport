@@ -31,7 +31,7 @@ class RegController extends Controller{
             $key="str:u:token:web:".$model['user_id'];
             Redis::set($key,$token);
             Redis::setTimeout($key,86400);
-            header('refresh:2,/');
+            header('refresh:2,https://www.anjingdehua.cn');
             echo '注册成功';
         }else{
             header('refresh:2,/reg');
