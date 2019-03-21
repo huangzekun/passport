@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\UserModel;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller{
     public function login(){
@@ -22,7 +23,10 @@ class LoginController extends Controller{
                 setcookie('token',$token,time()+86400,'/','anjingdehua.cn',false,true);
                 request()->session()->put('uid',$model['user_id']);
                 request()->session()->put('u_token',$token);
-                //header("Refresh:2;/center");
+                $key="str:u:token:web:".$model['user_id'];
+                Redis::set($key,$token);
+                Redis::setTimeout($key,86400);
+                header("Refresh:2;/");
                 echo '登陆成功';
             }else{
                 header('refresh:2,/login');

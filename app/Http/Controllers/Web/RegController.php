@@ -28,7 +28,10 @@ class RegController extends Controller{
             setcookie('token',$token,time()+86400,'/','anjingdehua.cn',false,true);
             request()->session()->put('uid',$model);
             request()->session()->put('u_token',$token);
-            //header('refresh:2,/center');
+            $key="str:u:token:web:".$model['user_id'];
+            Redis::set($key,$token);
+            Redis::setTimeout($key,86400);
+            header('refresh:2,/');
             echo '注册成功';
         }else{
             header('refresh:2,/reg');
