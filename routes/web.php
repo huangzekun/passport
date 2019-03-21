@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login','Web\LoginController@login');
-Route::post('loginadd','Web\LoginController@loginadd');
+Route::any('login','Web\LoginController@login');
+Route::any('loginadd','Web\LoginController@loginadd');
 
-Route::get('reg','Web\RegController@reg');
-Route::post('regadd','Web\RegController@regadd');
+Route::any('reg','Web\RegController@reg');
+Route::any('regadd','Web\RegController@regadd');
