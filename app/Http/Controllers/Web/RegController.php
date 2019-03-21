@@ -9,7 +9,7 @@ use App\Model\UserModel;
 
 class RegController extends Controller{
 
-    public function login(){
+    public function reg(){
         return view('reg.reg');
     }
     public function regadd(){
