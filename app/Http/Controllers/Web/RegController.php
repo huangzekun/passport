@@ -39,7 +39,7 @@ class RegController extends Controller{
             header('refresh:2,'.$data['url']);
             echo '注册成功';
         }else{
-            header('refresh:2,/reg');
+            header('refresh:2,/reg?url='.$data['url']);
             echo '注册失败';
         }
     }

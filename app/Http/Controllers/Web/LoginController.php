@@ -33,12 +33,12 @@ class LoginController extends Controller{
                 header("Refresh:2,url=".$data['url']);
                 echo '登陆成功';
             }else{
-                header('refresh:2,/login');
+                header('refresh:2,/login?url='.$data['url']);
                 echo '登录失败';
             }
         }else{
             echo '用户名有误';
-            header('refresh:2,/login');
+            header('refresh:2,/login?url='.$data['url']);
         }
     }
 }
