@@ -18,6 +18,7 @@ class LoginController extends Controller{
     }
     public function loginadd(){
         $data=$_POST;
+        echo $data['url'];exit;
         $model=UserModel::where(['user_name'=>$data['user_name']])->first();
         if($model){
             $pwd=password_verify($data['user_pwd'],$model['user_pwd']);
