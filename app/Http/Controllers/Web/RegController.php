@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\UserModel;
+use Illuminate\Support\Facades\Redis;
 
 class RegController extends Controller{
 

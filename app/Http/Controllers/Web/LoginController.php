@@ -30,7 +30,7 @@ class LoginController extends Controller{
                 $key="str:u:token:web:".$model['user_id'];
                 Redis::set($key,$token);
                 Redis::setTimeout($key,86400);
-                header("Refresh:2;".$data['url']);
+                header("Refresh:2,url=".$data['url']);
                 echo '登陆成功';
             }else{
                 header('refresh:2,/login');
