@@ -41,4 +41,33 @@ class LoginController extends Controller{
             header('refresh:2,/login?url='.$data['url']);
         }
     }
+
+    public function login1(){
+        $data=$_POST;
+        $model=UserModel::where(['user_name'=>$data['user_name']])->first();
+        if($model){
+            $pwd=password_verify($data['user_pwd'],$model['user_pwd']);
+            if($pwd==true){
+                $token=substr(md5(time().mt_rand(1,99999)),10,10);
+                $key="str:u:token:api:".$model['user_id'];
+                Redis::set($key,$token);
+                $response=[
+                    'error'=>0,
+                    'msg'=>'登陆成功',
+                    'token'=>$token
+                ];
+            }else{
+                $response=[
+                    'error'=>400002,
+                    'msg'=>'登陆失败',
+                ];
+            }
+        }else{
+            $response=[
+                'error'=>400003,
+                'msg'=>'用户名有误',
+            ];
+        }
+        return $response;
+    }
 }

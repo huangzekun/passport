@@ -20,3 +20,5 @@ Route::any('loginadd','Web\LoginController@loginadd');
 
 Route::any('reg','Web\RegController@reg');
 Route::any('regadd','Web\RegController@regadd');
+
+Route::any('login1','Web\LoginController@login1');
