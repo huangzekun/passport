@@ -27,9 +27,9 @@ class LoginController extends Controller{
                 setcookie('token',$token,time()+86400,'/','anjingdehua.cn',false,true);
                 request()->session()->put('uid',$model['user_id']);
                 request()->session()->put('u_token',$token);
-                $key="str:u:token:web:".$model['user_id'];
-                Redis::set($key,$token);
-                Redis::setTimeout($key,86400);
+                $key="str:u:token:".$model['user_id'];
+                Redis::del($key);
+                Redis::hSet($key,'web',$token);
                 header("Refresh:2,url=".$data['url']);
                 echo '登陆成功';
             }else{
@@ -49,8 +49,9 @@ class LoginController extends Controller{
             $pwd=password_verify($data['user_pwd'],$model['user_pwd']);
             if($pwd==true){
                 $token=substr(md5(time().mt_rand(1,99999)),10,10);
-                $key="str:u:token:api:".$model['user_id'];
-                Redis::set($key,$token);
+                $key="str:u:token:".$model['user_id'];
+                Redis::del($key);
+                Redis::hSet($key,'app',$token);
                 $response=[
                     'error'=>0,
                     'msg'=>'登陆成功',
