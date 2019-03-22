@@ -71,4 +71,11 @@ class LoginController extends Controller{
         }
         return $response;
     }
+
+    public function quit(){
+        $url=$_GET['url'];
+        setcookie('uid',null,time()-1,'/','anjingdehua.cn',false,true);
+        setcookie('token',null,time()-1,'/','anjingdehua.cn',false,true);
+        header("Location:".$url);
+    }
 }
