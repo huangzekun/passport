@@ -56,7 +56,7 @@ class LoginController extends Controller{
                     'error'=>0,
                     'msg'=>'登陆成功',
                     'token'=>$token,
-                    'uid'=>$model['uid']
+                    'uid'=>$model['user_id']
                 ];
             }else{
                 $response=[
